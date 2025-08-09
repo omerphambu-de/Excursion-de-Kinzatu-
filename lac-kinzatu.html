@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Le Lac et ses Rives Paisibles - Excursion IST/Boma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('lll.jpg'); /* photo de fond du lac */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+        header {
+            background-color: rgba(30, 144, 255, 0.85); /* bleu doux */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+        header img {
+            height: 60px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        header h1 {
+            display: inline-block;
+            font-size: 24px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.85);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item {
+            cursor: pointer;
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .caption {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #1a5276;
+        }
+        .description-text {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: #21618c;
+            margin-top: 4px;
+        }
+        .description {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            color: #333;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #1e90ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #1565c0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+        .modal.open {
+            display: flex;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.7);
+        }
+        .modal-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #1e90ff;
+            color: white;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .modal-close:hover {
+            background: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="Logo IST/Boma" />
+    <h1>Le Lac et ses Rives Paisibles</h1>
+</header>
+
+<div class="container">
+    <div class="gallery">
+        <div class="gallery-item" tabindex="0" data-img="lac_au_crepuscule.jpg" data-caption="Lac au crépuscule">
+            <img src="lacv.webp" alt="Lac au crépuscule" />
+            <div class="caption">Lac au crépuscule</div>
+            <div class="description-text">Le lac calme baigné par les couleurs chaudes du coucher de soleil.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="rive_florale.jpg" data-caption="Rives fleuries">
+            <img src="fleurie.jpg" alt="Rives fleuries" />
+            <div class="caption">Rives fleuries</div>
+            <div class="description-text">Les berges ornées de fleurs sauvages et végétation luxuriante.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="barque_tranquille.jpg" data-caption="Barque tranquille">
+            <img src="barque.png" alt="Barque tranquille" />
+            <div class="caption">Barque tranquille</div>
+            <div class="description-text">Une barque amarrée invite à une balade paisible sur l'eau.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="reflets_naturels.jpg" data-caption="Reflets naturels">
+            <img src="reflet.jpeg" alt="Reflets naturels" />
+            <div class="caption">Reflets naturels</div>
+            <div class="description-text">Les reflets des arbres dans l'eau claire, un tableau naturel.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="oiseaux_rivage.jpg" data-caption="Oiseaux au rivage">
+            <img src="oiseau.jpg" alt="Oiseaux au rivage" />
+            <div class="caption">Oiseaux au rivage</div>
+            <div class="description-text">Des oiseaux qui se posent délicatement sur les rives paisibles.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="chemin_bois.jpg" data-caption="Chemin en bois">
+            <img src="chemin.JPG" alt="Chemin en bois" />
+            <div class="caption">Chemin en bois</div>
+            <div class="description-text">Un sentier en bois qui longe le lac, parfait pour la promenade.</div>
+        </div>
+    </div>
+
+    <div class="description">
+        <h2>Un havre de paix naturel</h2>
+        <p>
+            Le lac et ses rives paisibles offrent un refuge parfait pour se reconnecter avec la nature.  
+            Entre eaux calmes, flore variée et faune locale, cet endroit est une invitation à la sérénité et à l’émerveillement.
+        </p>
+        <p>
+            Les étudiants et visiteurs pourront y observer la biodiversité, pratiquer la photographie ou simplement profiter de la quiétude des lieux.
+        </p>
+    </div>
+
+    <a class="back-link" href="index.html">← Retour à l'accueil</a>
+</div>
+
+<!-- Modal pour afficher la photo agrandie -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Image agrandie">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="Fermer la fenêtre">×</button>
+        <img src="" alt="" id="modal-image" />
+        <div id="modal-caption" style="color:white; text-align:center; margin-top:8px; font-weight:600;"></div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalClose = document.querySelector('.modal-close');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const imgSrc = item.getAttribute('data-img');
+            const caption = item.getAttribute('data-caption');
+            modalImage.src = imgSrc;
+            modalImage.alt = caption;
+            modalCaption.textContent = caption;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                item.click();
+            }
+        });
+    });
+
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('open') && e.key === 'Escape') {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Les Jardins Botaniques Luxuriants - Excursion IST/Boma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('lll.jpg'); /* Remplace par le chemin de ta photo de fond */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+        header {
+            background-color: rgba(34,139,34,0.85);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+        header img {
+            height: 60px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        header h1 {
+            display: inline-block;
+            font-size: 24px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.85);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item {
+            cursor: pointer;
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .caption {
+            margin-top: 8px;
+            font-weight: 600;
+            color: #2a5d2a;
+        }
+        .description-text {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: #466d46;
+            margin-top: 4px;
+        }
+        .description {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            color: #333;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #228B22;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #196619;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+        .modal.open {
+            display: flex;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.7);
+        }
+        .modal-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #228B22;
+            color: white;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .modal-close:hover {
+            background: #196619;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="Logo IST/Boma" />
+    <h1>Les Jardins Botaniques Luxuriants</h1>
+</header>
+
+<div class="container">
+    <div class="gallery">
+        <div class="gallery-item" tabindex="0" data-img="alle.jpg" data-caption="Allée fleurie de Kinzatu">
+            <img src="alle.jpg" alt="Allée fleurie de Kinzatu" />
+            <div class="caption">Allée fleurie de Kinzatu</div>
+            <div class="description-text">Un chemin bordé de fleurs colorées invitant à la promenade paisible.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="route.jpg" data-caption="Plantes tropicales de Kinzatu">
+            <img src="chemin.jpg" alt="Plantes tropicales de Kinzatu" />
+            <div class="caption">Plantes tropicales de Kinzatu</div>
+            <div class="description-text">Une variété impressionnante de plantes tropicales exotiques et luxuriantes.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="coin.jpg" data-caption="Coin détente de Kinzatu">
+            <img src="coin.jpg" alt="Coin détente de Kinzatu" />
+            <div class="caption">Coin détente de Kinzatu</div>
+            <div class="description-text">Un espace calme aménagé pour se reposer et profiter de la nature environnante.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="rare.avif" data-caption="Espèces rares de Kinzatu">
+            <img src="rare.avif" alt="Espèces rares de Kinzatu" />
+            <div class="caption">Espèces rares de Kinzatu</div>
+            <div class="description-text">Plantes et fleurs rares, précieuses pour la biodiversité locale.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="panorama.jpg" data-caption="Panorama verdoyant de Kinzatu">
+            <img src="panorama.jpg" alt="Panorama verdoyant de Kinzatu" />
+            <div class="caption">Panorama verdoyant de Kinzatu</div>
+            <div class="description-text">Une vue étendue sur la végétation luxuriante des jardins.</div>
+        </div>
+        <div class="gallery-item" tabindex="0" data-img="chute.jpeg" data-caption="La chute de Kinzatu">
+            <img src="chute.jpeg" alt="La chute de Kinzatu" />
+            <div class="caption">La chute de Kinzatu</div>
+            <div class="description-text">Une cascade impressionnante, joyau naturel au cœur des jardins.</div>
+        </div>
+    </div>
+
+    <div class="description">
+        <h2>Une oasis de verdure</h2>
+        <p>
+            Les Jardins Botaniques Luxuriants de Kinzatu offrent une immersion dans la richesse végétale de notre région.
+            Entre fleurs exotiques, plantes médicinales et arbres centenaires, cet espace est un véritable laboratoire naturel
+            pour l’étude de la biodiversité locale.
+        </p>
+        <p>
+            Lors de la visite, les étudiants pourront observer différentes espèces, découvrir leur rôle dans l’écosystème
+            et profiter d’un cadre calme propice à la détente et à la photographie.
+        </p>
+    </div>
+
+    <a class="back-link" href="index.html">← Retour à l'accueil</a>
+</div>
+
+<!-- Modal pour afficher la photo agrandie -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Image agrandie">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="Fermer la fenêtre">×</button>
+        <img src="" alt="" id="modal-image" />
+        <div id="modal-caption" style="color:white; text-align:center; margin-top:8px; font-weight:600;"></div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalClose = document.querySelector('.modal-close');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const imgSrc = item.getAttribute('data-img');
+            const caption = item.getAttribute('data-caption');
+            modalImage.src = imgSrc;
+            modalImage.alt = caption;
+            modalCaption.textContent = caption;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                item.click();
+            }
+        });
+    });
+
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('open') && e.key === 'Escape') {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+</script>
+
+</body>
+</html>

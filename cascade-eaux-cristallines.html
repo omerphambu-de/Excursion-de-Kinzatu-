@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Cascade aux Eaux Cristallines - Excursion IST/Boma</title>
+  <style>
+    body {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #f5f5f5;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('lll.jpg') no-repeat center center;
+      background-size: cover;
+      /* filter: blur(8px);  supprimé pour enlever le flou */
+      z-index: -1;
+      opacity: 0.85;
+    }
+    header {
+      background-color: #1E90FF;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    header img {
+      height: 60px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    header h1 {
+      display: inline-block;
+      font-size: 24px;
+      margin: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .gallery-item {
+      background: white;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .caption {
+      font-weight: 600;
+      color: #1E90FF;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+    .description-text {
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #333;
+      text-align: center;
+    }
+    .description {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #1E90FF;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      position: relative;
+      z-index: 1;
+    }
+    .back-link:hover {
+      background-color: #125d9d;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      padding: 20px;
+    }
+    .modal.open {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+      text-align: center;
+    }
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.7);
+    }
+    .modal-caption {
+      color: white;
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .modal-close {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #1E90FF;
+      color: white;
+      border: none;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .modal-close:hover {
+      background: #125d9d;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logo.png" alt="Logo IST/Boma" />
+  <h1>La Cascade aux Eaux Cristallines</h1>
+</header>
+
+<div class="container">
+  <div class="gallery">
+
+    <div class="gallery-item" tabindex="0" data-img="uko.jpg" data-caption="Chute d'eau principale">
+      <img src="uko.jpg" alt="Chute d'eau principale" />
+      <div class="caption">Chute d'eau principale</div>
+      <div class="description-text">La chute spectaculaire qui forme le cœur de la cascade.</div>
+    </div>
+
+    <div class="gallery-item" tabindex="0" data-img="casde.webp" data-caption="Eaux turquoise">
+      <img src="casde.webp" alt="Eaux turquoise" />
+      <div class="caption">Eaux turquoise</div>
+      <div class="description-text">Les eaux limpides aux couleurs turquoises fascinantes.</div>
+    </div>
+
+    <div class="gallery-item" tabindex="0" data-img="mjo.jpg" data-caption="Rivière en contrebas">
+      <img src="mjo.jpg" alt="Rivière en contrebas" />
+      <div class="caption">Rivière en contrebas</div>
+      <div class="description-text">La rivière qui coule paisiblement au pied de la cascade.</div>
+    </div>
+
+    <div class="gallery-item" tabindex="0" data-img="cas.webp" data-caption="Paysage verdoyant autour de la cascade">
+      <img src="cas.webp" alt="Paysage verdoyant autour de la cascade" />
+      <div class="caption">Paysage verdoyant autour de la cascade</div>
+      <div class="description-text">La végétation dense qui entoure le site naturel.</div>
+    </div>
+
+    <div class="gallery-item" tabindex="0" data-img="turqure.jpeg" data-caption="Vue panoramique de la cascade">
+      <img src="turqure.jpeg" alt="Vue panoramique de la cascade" />
+      <div class="caption">Vue panoramique de la cascade</div>
+      <div class="description-text">Une vue large offrant une perspective spectaculaire.</div>
+    </div>
+
+    <div class="gallery-item" tabindex="0" data-img="lac.jpg" data-caption="Vue panoramique de la cascade">
+      <img src="lac.jpg" alt="Vue panoramique de la cascade" />
+      <div class="caption">Vue panoramique de la cascade</div>
+      <div class="description-text">Un autre angle montrant la beauté de la cascade et son environnement.</div>
+    </div>
+
+  </div>
+
+  <div class="description">
+    <h2>Un joyau naturel au cœur de la forêt</h2>
+    <p>
+      La Cascade aux Eaux Cristallines est l’un des trésors cachés de Kinzatu.
+      Son eau limpide et ses chutes spectaculaires offrent un spectacle à couper le souffle,
+      propice à la détente et à l’émerveillement.
+    </p>
+    <p>
+      Les étudiants pourront profiter d’une balade rafraîchissante, prendre des photos magnifiques
+      et apprécier le calme apaisant des lieux.
+    </p>
+  </div>
+
+  <a class="back-link" href="index.html">← Retour à l'accueil</a>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Image agrandie">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Fermer la fenêtre">×</button>
+    <img src="" alt="" id="modal-image" />
+    <div class="modal-caption" id="modal-caption"></div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('modal');
+  const modalImage = document.getElementById('modal-image');
+  const modalCaption = document.getElementById('modal-caption');
+  const modalClose = document.querySelector('.modal-close');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const imgSrc = item.getAttribute('data-img');
+      const caption = item.getAttribute('data-caption');
+      modalImage.src = imgSrc;
+      modalImage.alt = caption;
+      modalCaption.textContent = caption;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden'; // désactive scroll page
+    });
+
+    // Accessibilité clavier: ouvrir modal avec Enter ou Espace
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.click();
+      }
+    });
+  });
+
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('open');
+    document.body.style.overflow = ''; // réactive scroll page
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (modal.classList.contains('open') && e.key === 'Escape') {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+
+</body>
+</html>

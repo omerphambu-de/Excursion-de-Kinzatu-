@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Excursion à Kinzatu - IST/Boma</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #5dade2, #48c9b0);
+      color: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px 40px;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      max-width: 1200px;
+      padding: 25px 40px;
+      display: flex;
+      align-items: center;
+      background: rgba(255 255 255 / 0.15);
+      backdrop-filter: blur(15px);
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 8px 32px rgb(0 0 0 / 0.4);
+      gap: 25px;
+      user-select: none;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header img {
+      height: 80px;
+      width: auto;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    header img:hover {
+      transform: rotate(10deg) scale(1.05);
+    }
+
+    header .header-text {
+      flex-grow: 1;
+      text-align: center;
+      font-weight: 700;
+      color: #fff;
+      user-select: none;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 3px;
+      margin-bottom: 5px;
+      color: #fff; /* texte blanc bien visible */
+      text-shadow: 0 0 8px rgba(0,0,0,0.8);
+      background: none;
+      -webkit-text-fill-color: unset;
+      filter: drop-shadow(0 0 6px #000);
+      transition: filter 0.3s ease;
+    }
+
+    header h1:hover {
+      filter: drop-shadow(0 0 12px #ffe066);
+    }
+
+    header p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      color: #f9f9f9cc;
+      text-shadow: 0 0 6px rgba(0,0,0,0.45);
+      margin-bottom: 6px;
+    }
+
+    header .sub-info {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffd166cc;
+      text-shadow: 0 0 6px rgba(0,0,0,0.5);
+      letter-spacing: 1.2px;
+      user-select: none;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1100px;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgb(0 0 0 / 0.5);
+      cursor: pointer;
+      transition: transform 0.4s ease;
+      margin-bottom: 40px;
+      user-select: none;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.65);
+      transition: filter 0.4s ease;
+      border-radius: 30px;
+      will-change: filter;
+    }
+
+    .hero:hover {
+      transform: scale(1.07);
+      box-shadow: 0 20px 50px rgb(0 0 0 / 0.65);
+    }
+
+    .hero:hover img {
+      filter: brightness(1);
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      color: #fff;
+      text-shadow: 3px 3px 15px rgba(0,0,0,0.85);
+      font-size: 2.8rem;
+      font-weight: 800;
+      max-width: 70%;
+      user-select: none;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      text-shadow:
+        1px 1px 2px #ff6f91,
+        0 0 15px #ff6f91,
+        0 0 30px #ff6f91;
+      transition: text-shadow 0.3s ease;
+    }
+
+    .hero:hover .hero-text {
+      text-shadow:
+        2px 2px 5px #ffe066,
+        0 0 20px #ffe066,
+        0 0 40px #ffe066;
+    }
+
+    .intro-text {
+      font-size: 1.3rem;
+      margin-bottom: 50px;
+      line-height: 1.7;
+      font-weight: 600;
+      color: #eef6f9dd;
+      text-shadow: 0 0 8px rgba(0,0,0,0.3);
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 22px;
+      box-shadow:
+        0 6px 20px rgb(255 255 255 / 0.12),
+        inset 0 0 5px rgba(255,255,255,0.15);
+      cursor: pointer;
+      transition:
+        transform 0.35s cubic-bezier(0.4,0,0.2,1),
+        box-shadow 0.35s cubic-bezier(0.4,0,0.2,1);
+      user-select: none;
+      will-change: transform, box-shadow;
+      filter: drop-shadow(0 3px 4px rgba(0,0,0,0.3));
+    }
+
+    .gallery img:hover,
+    .gallery img:focus {
+      transform: scale(1.12) rotate(-1.5deg) translateY(-6px);
+      box-shadow:
+        0 14px 45px rgba(255,111,145,0.7),
+        inset 0 0 20px rgba(255,111,145,0.45);
+      outline: none;
+      z-index: 1;
+    }
+
+    /* Section prix */
+    .price-section {
+      margin-bottom: 60px;
+      background: rgba(255 255 255 / 0.12);
+      padding: 25px 30px;
+      border-radius: 25px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 40px #ff6f91aa;
+      user-select: none;
+      text-align: center;
+    }
+    .price-section h2 {
+      font-size: 2.4rem;
+      margin-bottom: 18px;
+      color: #ffd166;
+      text-shadow:
+        0 0 10px #ffd166cc,
+        0 0 20px #ff6f91cc;
+      letter-spacing: 2px;
+    }
+    .price-section p {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffe066;
+      text-shadow: 0 0 8px #ff6f91cc;
+      letter-spacing: 1.5px;
+    }
+
+    /* Section places */
+    .places-section {
+      margin-bottom: 50px;
+      max-width: 750px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      user-select: none;
+    }
+    .places-section h2 {
+      font-size: 2.6rem;
+      margin-bottom: 30px;
+      color: #ffd166;
+      text-shadow:
+        0 0 12px #ffd166cc,
+        0 0 22px #ff6f91cc;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .places-section ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px;
+      padding: 0;
+    }
+    .places-section li {
+      margin: 0;
+    }
+    .place-btn {
+      background: linear-gradient(135deg, #ff6f91, #ffd166);
+      color: #3a1d1d;
+      padding: 14px 28px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow:
+        0 8px 25px rgb(255 111 145 / 0.8);
+      transition:
+        background 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.25s ease;
+      user-select: none;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      line-height: normal;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+    .place-btn:hover,
+    .place-btn:focus {
+      background: linear-gradient(135deg, #ffd166, #ff6f91);
+      box-shadow:
+        0 10px 38px rgb(255 209 102 / 0.9);
+      transform: scale(1.12) rotate(2deg);
+      outline: none;
+      text-decoration: none;
+      color: #3a1d1d;
+      filter: drop-shadow(0 0 6px #ff6f91);
+      z-index: 2;
+      position: relative;
+    }
+
+    footer {
+      width: 100%;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #f0f4f8bb;
+      user-select: none;
+      text-shadow: 0 0 6px rgba(0,0,0,0.6);
+      letter-spacing: 1.1px;
+      font-weight: 600;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+      padding: 40px 20px;
+      cursor: zoom-out;
+      user-select: none;
+    }
+    .modal.open {
+      display: flex;
+    }
+    .modal img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 20px;
+      box-shadow: 0 0 38px #ff6f91cc;
+      cursor: zoom-in;
+      transition: transform 0.35s ease;
+    }
+    .modal img:hover {
+      transform: scale(1.08);
+    }
+    .modal .close-btn {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 54px;
+      color: #ffe066;
+      font-weight: 900;
+      cursor: pointer;
+      text-shadow: 0 0 18px #ff6f91cc;
+      transition: color 0.3s ease;
+      z-index: 3100;
+      user-select: none;
+    }
+    .modal .close-btn:hover {
+      color: #ff6f91;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1.05rem;
+      }
+      .hero-text {
+        font-size: 1.9rem;
+        max-width: 90%;
+      }
+      .gallery {
+        grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+        gap: 18px;
+      }
+      .places-section ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      .place-btn {
+        font-size: 1.05rem;
+        padding: 12px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="Logo IST/Boma" />
+    <div class="header-text">
+      <h1>Excursion à Kinzatu</h1>
+      <p>Organisée par l'IST/Boma - 15 Août 2025</p>
+      <div class="sub-info">
+        Chef de l'expédition : Mafuta | Durée : Jeudi 15 Août au Samedi 17 Août 2025
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero" tabindex="0" aria-label="Image principale de l'excursion à Kinzatu">
+      <img src="cool.jpg" alt="Magnifique lac de Kinzatu au coucher du soleil" />
+      <div class="hero-text">Vivez l'aventure de votre vie à Kinzatu !</div>
+    </div>
+
+    <p class="intro-text">
+      Chers étudiants, votre présence rendra cette excursion exceptionnelle ! Venez nombreux pour partager des moments inoubliables d'amitié, de découverte et de nature dans un cadre idyllique. Ensemble, faisons de ce voyage une réussite mémorable.
+    </p>
+
+    <div class="gallery" aria-label="Galerie photos de l'excursion Kinzatu">
+      <img src="cool.jpg" alt="Paysage verdoyant de Kinzatu" tabindex="0" />
+      <img src="casde.webp" alt="Groupe d'étudiants en excursion" tabindex="0" />
+      <img src="UK.jpg" alt="Activités au bord du lac" tabindex="0" />
+      <img src="botanique.webp" alt="Moments de détente entre étudiants" tabindex="0" />
+      <img src="plante.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" />
+      <img src="cas.webp" alt="Paysage naturel de Kinzatu" tabindex="0" />
+      <img src="hg.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" />
+      <img src="alle.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" />
+    </div>
+
+    <section class="price-section" aria-label="Prix du billet pour l'excursion">
+      <h2>Prix du billet</h2>
+      <p>
+        Le prix du billet est de <strong>20 dollars</strong> par personne, incluant le transport, l'accès aux sites et un guide professionnel.
+      </p>
+    </section>
+
+    <section class="places-section" aria-label="Liste des lieux à visiter pendant l'excursion">
+      <h2>Places à visiter lors de l'excursion</h2>
+      <ul>
+        <li><a href="lac-kinzatu.html" class="place-btn">Le lac Kinzatu et ses rives paisibles</a></li>
+        <li><a href="jardins-botaniques.html" class="place-btn">Les jardins botaniques luxuriants</a></li>
+        <li><a href="village-traditionnel.html" class="place-btn">Le village traditionnel Kinzatu</a></li>
+        <li><a href="cascade-eaux-cristallines.html" class="place-btn">La cascade aux eaux cristallines</a></li>
+        <li><a href="point-vue-panoramique.html" class="place-btn">Le point de vue panoramique sur la vallée</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 IST/Boma - Contactez-nous : contact@istboma.cd
+  </footer>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Image agrandie">
+    <span class="close-btn" role="button" aria-label="Fermer la fenêtre">&times;</span>
+    <img id="modal-img" alt="Image agrandie" />
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const closeBtn = document.querySelector('.close-btn');
+    const galleryImages = document.querySelectorAll('.gallery img, .hero img');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        modal.classList.add('open');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+      });
+      img.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          modal.classList.add('open');
+          modalImg.src = img.src;
+          modalImg.alt = img.alt;
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('open');
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.classList.remove('open');
+      }
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        modal.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
