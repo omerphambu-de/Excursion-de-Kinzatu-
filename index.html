@@ -26,7 +26,7 @@
     header {
       width: 100%;
       max-width: 1200px;
-      padding: 25px 40px;
+      padding: 1.5rem 2.5rem;
       display: flex;
       align-items: center;
       background: rgba(255 255 255 / 0.15);
@@ -64,7 +64,7 @@
       font-size: 3rem;
       letter-spacing: 3px;
       margin-bottom: 5px;
-      color: #fff; /* texte blanc bien visible */
+      color: #fff;
       text-shadow: 0 0 8px rgba(0,0,0,0.8);
       background: none;
       -webkit-text-fill-color: unset;
@@ -122,6 +122,7 @@
       transition: filter 0.4s ease;
       border-radius: 30px;
       will-change: filter;
+      loading: lazy;
     }
 
     .hero:hover {
@@ -362,12 +363,19 @@
       color: #ff6f91;
     }
 
+    /* Responsive mobile */
     @media (max-width: 600px) {
+      header {
+        padding: 1rem 1.5rem;
+      }
       header h1 {
         font-size: 2rem;
       }
       header p {
         font-size: 1.05rem;
+      }
+      .hero {
+        height: 250px; /* hauteur réduite sur mobile */
       }
       .hero-text {
         font-size: 1.9rem;
@@ -383,7 +391,7 @@
       }
       .place-btn {
         font-size: 1.05rem;
-        padding: 12px 24px;
+        padding: 14px 28px;
       }
     }
   </style>
@@ -395,15 +403,15 @@
     <div class="header-text">
       <h1>Excursion à Kinzatu</h1>
       <p>Organisée par l'IST/Boma - 15 Août 2025</p>
-      <div class="sub-info">
-        Chef de l'expédition : Mafuta | Durée : Jeudi 15 Août au Samedi 17 Août 2025
+      <div class="sub-info" aria-live="polite">
+        Chef de l'expédition : Son excellence monsieur chef des étudiants Jesky Mafuta / Durée : Jeudi 15 Août au Samedi 17 Août 2025
       </div>
     </div>
   </header>
 
   <main>
     <div class="hero" tabindex="0" aria-label="Image principale de l'excursion à Kinzatu">
-      <img src="cool.jpg" alt="Magnifique lac de Kinzatu au coucher du soleil" />
+      <img src="cool.jpg" alt="Magnifique lac de Kinzatu au coucher du soleil" loading="lazy" />
       <div class="hero-text">Vivez l'aventure de votre vie à Kinzatu !</div>
     </div>
 
@@ -412,14 +420,14 @@
     </p>
 
     <div class="gallery" aria-label="Galerie photos de l'excursion Kinzatu">
-      <img src="cool.jpg" alt="Paysage verdoyant de Kinzatu" tabindex="0" />
-      <img src="casde.webp" alt="Groupe d'étudiants en excursion" tabindex="0" />
-      <img src="UK.jpg" alt="Activités au bord du lac" tabindex="0" />
-      <img src="botanique.webp" alt="Moments de détente entre étudiants" tabindex="0" />
-      <img src="plante.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" />
-      <img src="cas.webp" alt="Paysage naturel de Kinzatu" tabindex="0" />
-      <img src="hg.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" />
-      <img src="alle.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" />
+      <img src="cool.jpg" alt="Paysage verdoyant de Kinzatu" tabindex="0" loading="lazy" />
+      <img src="casde.webp" alt="Groupe d'étudiants en excursion" tabindex="0" loading="lazy" />
+      <img src="UK.jpg" alt="Activités au bord du lac" tabindex="0" loading="lazy" />
+      <img src="botanique.webp" alt="Moments de détente entre étudiants" tabindex="0" loading="lazy" />
+      <img src="plante.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" loading="lazy" />
+      <img src="cas.webp" alt="Paysage naturel de Kinzatu" tabindex="0" loading="lazy" />
+      <img src="hg.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" loading="lazy" />
+      <img src="alle.jpg" alt="Paysage naturel de Kinzatu" tabindex="0" loading="lazy" />
     </div>
 
     <section class="price-section" aria-label="Prix du billet pour l'excursion">
@@ -432,11 +440,11 @@
     <section class="places-section" aria-label="Liste des lieux à visiter pendant l'excursion">
       <h2>Places à visiter lors de l'excursion</h2>
       <ul>
-        <li><a href="lac-kinzatu.html" class="place-btn">Le lac Kinzatu et ses rives paisibles</a></li>
-        <li><a href="jardins-botaniques.html" class="place-btn">Les jardins botaniques luxuriants</a></li>
-        <li><a href="village-traditionnel.html" class="place-btn">Le village traditionnel Kinzatu</a></li>
-        <li><a href="cascade-eaux-cristallines.html" class="place-btn">La cascade aux eaux cristallines</a></li>
-        <li><a href="point-vue-panoramique.html" class="place-btn">Le point de vue panoramique sur la vallée</a></li>
+        <li><a href="lac-kinzatu.html" class="place-btn" aria-label="Visiter Le lac Kinzatu et ses rives paisibles">Le lac Kinzatu et ses rives paisibles</a></li>
+        <li><a href="jardins-botaniques.html" class="place-btn" aria-label="Visiter Les jardins botaniques luxuriants">Les jardins botaniques luxuriants</a></li>
+        <li><a href="village-traditionnel.html" class="place-btn" aria-label="Visiter Le village traditionnel Kinzatu">Le village traditionnel Kinzatu</a></li>
+        <li><a href="cascade-eaux-cristallines.html" class="place-btn" aria-label="Visiter La cascade aux eaux cristallines">La cascade aux eaux cristallines</a></li>
+        <li><a href="point-vue-panoramique.html" class="place-btn" aria-label="Visiter Le point de vue panoramique sur la vallée">Le point de vue panoramique sur la vallée</a></li>
       </ul>
     </section>
   </main>
